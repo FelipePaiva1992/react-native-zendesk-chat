@@ -15,6 +15,11 @@ import com.zopim.android.sdk.prechat.ZopimChatActivity;
 import java.lang.String;
 
 public class RNZendeskChatModule extends ReactContextBaseJavaModule {
+    private final static String MODULE_NAME = "RNZendeskChatModule";
+    private final static String NAME_KEY = "name";
+    private final static String EMAIL_KEY = "email";
+    private final static String PHONE_KEY = "phone";
+
     private ReactContext mReactContext;
 
     public RNZendeskChatModule(ReactApplicationContext reactContext) {
@@ -24,21 +29,21 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "RNZendeskChatModule";
+        return MODULE_NAME;
     }
 
     @ReactMethod
     public void setVisitorInfo(ReadableMap options) {
         VisitorInfo.Builder builder = new VisitorInfo.Builder();
 
-        if (options.hasKey("name")) {
-            builder.name(options.getString("name"));
+        if (options.hasKey(NAME_KEY)) {
+            builder.name(options.getString(NAME_KEY));
         }
-        if (options.hasKey("email")) {
-            builder.email(options.getString("email"));
+        if (options.hasKey(EMAIL_KEY)) {
+            builder.email(options.getString(EMAIL_KEY));
         }
-        if (options.hasKey("phone")) {
-            builder.phoneNumber(options.getString("phone"));
+        if (options.hasKey(PHONE_KEY)) {
+            builder.phoneNumber(options.getString(PHONE_KEY));
         }
 
         VisitorInfo visitorData = builder.build();
