@@ -10,7 +10,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.zopim.android.sdk.api.ZopimChat;
 import com.zopim.android.sdk.model.VisitorInfo;
-import com.zopim.android.sdk.prechat.*;
+import com.zopim.android.sdk.prechat.ZopimChatActivity;
 
 import java.lang.String;
 
@@ -19,6 +19,7 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
     private final static String NAME_KEY = "name";
     private final static String EMAIL_KEY = "email";
     private final static String PHONE_KEY = "phone";
+    private final static String NOTE = "note";
 
     private ReactContext mReactContext;
 
@@ -45,6 +46,9 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
         if (options.hasKey(PHONE_KEY)) {
             builder.phoneNumber(options.getString(PHONE_KEY));
         }
+        if (options.hasKey(NOTE)) {
+            builder.note(options.getString(NOTE));
+        }
 
         VisitorInfo visitorData = builder.build();
 
@@ -53,7 +57,7 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void init(String key) {
-        ZopimChat.init(key).emailTranscript(EmailTranscript.DISABLE);;
+        ZopimChat.init(key);
     }
 
     @ReactMethod
