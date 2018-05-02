@@ -53,7 +53,7 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void init(String key) {
-        ZopimChat.init(key);
+        ZopimChat.init(key).emailTranscript(EmailTranscript.DISABLE);;
     }
 
     @ReactMethod
